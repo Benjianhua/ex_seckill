@@ -1,33 +1,36 @@
 package com.good.study.exseckill.result;
 
-import javax.annotation.PostConstruct;
+import lombok.Data;
 
-public class Result {
-
-	private String name;
-
-	private String text;
+@Data
+public class Result<T> {
 	
-	private String say="快乐的一天";
+	private int code;
 
-	public Result() {
-		System.out.println("世界开始了！！！");
-		System.out.println(this.say);
-	}
+	private String msg;
 
-	@PostConstruct
-	public void init() {
-		this.name = "顾建华";
-		this.text = "世界聚焦于你";
-		this.say="快的的每一天";
+	private T data;
+
+	private Result(T data) {
+		this.code = 0;
+		this.msg = "sucess";
+		this.data = data;
 	}
 
-	public void printIn() {
-		System.out.println(this.text+this.name+this.say);
+	private Result(CodeMsg codeMsg) {
+		if (codeMsg == null) {
+			return;
+		}
+		this.code = codeMsg.getCode();
+		this.msg = codeMsg.getMsg();
 	}
-	
-	public static void main(String[] args) {
-		Result result=new Result();
-		result.printIn();
+
+	public static <T> Result<T> sucess(T data) {
+		return new Result<T>(data);
 	}
+
+	public static <T> Result<T> error(CodeMsg codeMsg) {
+		return new Result<T>(codeMsg);
+	}
+
 }
