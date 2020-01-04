@@ -26,7 +26,7 @@ public class TestController {
 		user.setId(id);
 		user.setName(name);
 		userDao.insert(user);
-		return "sucess";
+		return "success";
 	}
 
 }
