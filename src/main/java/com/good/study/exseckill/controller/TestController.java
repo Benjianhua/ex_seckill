@@ -17,7 +17,7 @@ public class TestController {
 
 	@Autowired
 	private UserDao userDao;
-
+	
 	@ApiOperation(value = "获取用户信息", notes = "获取用户信息")
 	@RequestMapping("/info/{id}/{name}")
 	@ResponseBody
