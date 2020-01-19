@@ -14,12 +14,15 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.ScanParams;
 import redis.clients.jedis.ScanResult;
 
+//redis接口操作方法
 @Service
 public class RedisService {
 
 	@Autowired
 	private JedisPool jedisPool;
-
+	
+	
+	//redis 取值
 	public <T> T get(KeyPrefix prefix, String key, Class<T> clazz) {
 		Jedis jedis = null;
 		try {
@@ -32,7 +35,8 @@ public class RedisService {
 			returnToPool(jedis);
 		}
 	}
-
+	
+	//redis 塞值
 	public <T> boolean set(KeyPrefix prefix, String key, T value) {
 		Jedis jedis = null;
 		try {
@@ -56,7 +60,8 @@ public class RedisService {
 		}
 
 	}
-
+	
+	//redis 判断key 是否存在
 	public boolean exists(KeyPrefix keyPrefix, String key) {
 		Jedis jedis = null;
 		try {
@@ -68,7 +73,8 @@ public class RedisService {
 		}
 
 	}
-
+	
+	//redis 删除值
 	public boolean delete(KeyPrefix keyPrefix, String key) {
 		Jedis jedis = null;
 		try {
@@ -80,7 +86,8 @@ public class RedisService {
 			returnToPool(jedis);
 		}
 	}
-
+	
+	//redis删除值
 	public boolean delete(KeyPrefix prefix) {
 		if (prefix == null) {
 			return false;
@@ -101,7 +108,8 @@ public class RedisService {
 			returnToPool(jedis);
 		}
 	}
-
+	
+	//*品配key 返回list 
 	public List<String> scanKeys(String key) {
 		Jedis jedis = null;
 
@@ -126,7 +134,8 @@ public class RedisService {
 		}
 
 	}
-
+	
+	//fastjson string 转 Bean 对象
 	@SuppressWarnings("unchecked")
 	private static <T> T stringToBean(String str, Class<T> clazz) {
 		if (str == null) {
@@ -144,7 +153,8 @@ public class RedisService {
 		}
 
 	}
-
+	
+	//fastjson bean 转json  string 
 	public static <T> String beanToString(T value) {
 		if (value == null) {
 			return null;
@@ -160,13 +170,15 @@ public class RedisService {
 			return JSON.toJSONString(value);
 		}
 	}
-
+	
+	//关闭jedis连接
 	private void returnToPool(Jedis jedis) {
 		if (jedis != null) {
 			jedis.close();
 		}
 	}
-
+	
+	//redis自增接口
 	public <T> Long incr(KeyPrefix prefix, String key) {
 		Jedis jedis = null;
 
@@ -182,7 +194,8 @@ public class RedisService {
 			returnToPool(jedis);
 		}
 	}
-
+	
+	//redis 自减接口
 	public <T> Long decr(KeyPrefix prefix, String key) {
 		Jedis jedis = null;
 

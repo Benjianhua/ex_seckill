@@ -4,7 +4,7 @@ import com.good.study.exseckill.result.CodeMsg;
 
 /**
  * @author 76366
- *
+ * 全局异常声名
  */
 public class GlobalException extends RuntimeException {
 	private static final long serialVersionUID = -3358191712219668149L;

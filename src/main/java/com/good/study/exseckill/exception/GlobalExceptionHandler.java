@@ -14,7 +14,8 @@ import com.good.study.exseckill.result.CodeMsg;
 import com.good.study.exseckill.result.Result;
 
 /**
- * @author 76366 参数校验异常
+ * @author 76366
+ *  controller 抛异常处理
  */
 @ControllerAdvice
 @ResponseBody

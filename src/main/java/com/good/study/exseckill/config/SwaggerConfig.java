@@ -13,7 +13,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author 76366
- * 
+ * http://localhost:8080/swagger-ui.html 
+ * swagger 访问地址
  */
 @Configuration
 @EnableSwagger2

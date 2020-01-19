@@ -9,7 +9,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * @author 76366
- *
+ * redis 连接池初始化
  */
 @Service
 public class RedisPoolFactory {
